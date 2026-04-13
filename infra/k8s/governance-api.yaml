@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: governance-api
+  labels:
+    app: governance-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: governance-api
+  template:
+    metadata:
+      labels:
+        app: governance-api
+    spec:
+      containers:
+        - name: governance-api
+          image: ghcr.io/example/governance-api:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: governance-secrets
+                  key: database_url
+            - name: NEO4J_URI
+              valueFrom:
+                secretKeyRef:
+                  name: governance-secrets
+                  key: neo4j_uri
+            - name: NEO4J_USER
+              valueFrom:
+                secretKeyRef:
+                  name: governance-secrets
+                  key: neo4j_user
+            - name: NEO4J_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: governance-secrets
+                  key: neo4j_password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: governance-api
+spec:
+  selector:
+    app: governance-api
+  ports:
+    - port: 80
+      targetPort: 8000
+      protocol: TCP
+  type: ClusterIP
