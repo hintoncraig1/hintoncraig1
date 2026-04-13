@@ -21,6 +21,7 @@
 - Added web presence planning artifact for website/store/domain-hosting rollout.
 - Added AppSheet system blueprint with full entities/roles/views/actions/settings/deployment-check model.
 - Added AppSheet deployment evidence pack (keys/security profile, settings profile, role preview matrix, deployment checklist).
+- Added cloud infrastructure translation pack (AWS CloudFormation, GCP Terraform, Azure ARM) aligned to Kubernetes runtime manifest.
 
 ### References
 

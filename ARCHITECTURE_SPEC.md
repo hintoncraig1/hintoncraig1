@@ -77,3 +77,4 @@ A microservices-based, psychologically grounded learning platform targeting:
 - `docs/planning/WEB_PRESENCE_PLAN.md` for website, store, and domain/hosting rollout tasks.
 - `docs/appsheet/APPSHEET_SYSTEM_BLUEPRINT.md` for entities, roles, views, actions, settings, and deployment checklist.
 - `docs/appsheet/DEPLOYMENT_READINESS_CHECKLIST.md` for pre-deploy validation gates.
+- `docs/deployment/INFRA_TRANSLATION_GUIDE.md` for AWS/GCP/Azure infrastructure translation.

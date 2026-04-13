@@ -45,5 +45,10 @@ Merges to `master` are expected to pass ADR-0001 freeze/approval checks, with de
 - `docs/appsheet/DATA_KEYS_AND_SECURITY.md`
 - `docs/appsheet/APPSHEET_SETTINGS_PROFILE.md`
 - `docs/appsheet/ROLE_PREVIEW_TEST_MATRIX.md`
+- `docs/deployment/INFRA_TRANSLATION_GUIDE.md`
+- `infra/k8s/governance-api.yaml`
+- `infra/aws/cloudformation/governance-foundation.yaml`
+- `infra/gcp/terraform/main.tf`
+- `infra/azure/arm/governance-foundation.json`
 - `docs/visual/VISUAL_REFERENCE_MAP.md`
 - `docs/frontend/SYNAPSE_VISUAL_TOKENS.md`
