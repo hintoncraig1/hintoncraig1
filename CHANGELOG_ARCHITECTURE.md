@@ -22,6 +22,8 @@
 - Added AppSheet system blueprint with full entities/roles/views/actions/settings/deployment-check model.
 - Added AppSheet deployment evidence pack (keys/security profile, settings profile, role preview matrix, deployment checklist).
 - Added cloud infrastructure translation pack (AWS CloudFormation, GCP Terraform, Azure ARM) aligned to Kubernetes runtime manifest.
+- Added executable multi-cloud deployment scripts (AWS/GCP/Azure + Kubernetes secret bootstrap) to operationalize infra translation pack.
+- Added prioritized next-build vector document to define immediate coding sequence across backend, deployment, UI, and ops.
 
 ### References
 
@@ -31,3 +33,10 @@
 - `docs/frontend/EXPERT_ROLES_TABLE.md`
 - `docs/data/canonical_expert_roles.json`
 - `ARCHITECTURE_SPEC.md`
+
+- `docs/deployment/INFRA_TRANSLATION_GUIDE.md`
+- `scripts/deploy/deploy_aws.sh`
+- `scripts/deploy/deploy_gcp.sh`
+- `scripts/deploy/deploy_azure.sh`
+- `scripts/deploy/render_k8s_secret.sh`
+- `docs/planning/NEXT_BUILD_VECTOR.md`
