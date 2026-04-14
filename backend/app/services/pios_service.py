@@ -4,6 +4,7 @@ from collections import Counter
 from datetime import datetime
 from uuid import uuid4
 
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.models.sql_models import LedgerEventTable, VaultEntryTable
@@ -50,8 +51,10 @@ class PersonalIntelligenceService:
         )
         self.db.add(entry)
 
+        self._acquire_ledger_head_lock()
         previous_event = (
             self.db.query(LedgerEventTable)
+            .with_for_update()
             .order_by(LedgerEventTable.created_at.desc())
             .first()
         )
@@ -70,6 +73,12 @@ class PersonalIntelligenceService:
         self.db.commit()
 
         return self._to_entry_read(entry), self._to_event_read(event)
+
+    def _acquire_ledger_head_lock(self) -> None:
+        """Serialize append operations so each event links to a unique predecessor."""
+        if self.db.bind and self.db.bind.dialect.name == "postgresql":
+            # Transaction-scoped advisory lock protects the chain head even when ledger_events is empty.
+            self.db.execute(text("SELECT pg_advisory_xact_lock(:lock_id)"), {"lock_id": 1903217431})
 
     def timeline(self, limit: int = 100) -> list[EntryRead]:
         rows = (
