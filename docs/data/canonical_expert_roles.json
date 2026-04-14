@@ -1,0 +1,173 @@
+[
+  {
+    "id": "role-01",
+    "role": "Frontend Development Expert",
+    "coreResponsibilities": [
+      "UI/UX design implementation",
+      "Performance optimization",
+      "Media playback integration",
+      "ATRIUM 5-panel dashboard"
+    ],
+    "automationTools": ["Bubble", "OutSystems", "React.js", "Tailwind CSS"],
+    "learningGoals": [
+      "Master React component architecture",
+      "Implement accessible UI patterns",
+      "Optimize media streaming performance"
+    ],
+    "progressionStage": "introduced",
+    "reviewCadenceDays": [1, 3, 7, 14, 30],
+    "status": "active"
+  },
+  {
+    "id": "role-02",
+    "role": "Backend Development Expert",
+    "coreResponsibilities": [
+      "Microservices architecture",
+      "API design and implementation",
+      "Cloud infrastructure management",
+      "Redis predictive cache"
+    ],
+    "automationTools": ["Node.js", "AWS", "Kubernetes", "FastAPI", "PostgreSQL"],
+    "learningGoals": [
+      "Design resilient API gateways",
+      "Implement circuit breaker patterns",
+      "Master dual-database persistence"
+    ],
+    "progressionStage": "practiced",
+    "reviewCadenceDays": [1, 3, 7, 14, 30],
+    "status": "active"
+  },
+  {
+    "id": "role-03",
+    "role": "AI/ML Engineer",
+    "coreResponsibilities": [
+      "Train and deploy AI models",
+      "Data science integration",
+      "Dynamic MCQ generation",
+      "NLP branching scenarios"
+    ],
+    "automationTools": ["TensorFlow", "PyTorch", "OpenAI API", "pgvector"],
+    "learningGoals": [
+      "Evaluate LLM output quality",
+      "Create semantic embeddings",
+      "Implement spaced repetition algorithms"
+    ],
+    "progressionStage": "introduced",
+    "reviewCadenceDays": [1, 3, 7, 14, 30],
+    "status": "active"
+  },
+  {
+    "id": "role-04",
+    "role": "Blockchain Developer",
+    "coreResponsibilities": [
+      "Develop and deploy smart contracts",
+      "NFT integration",
+      "Web3 connectivity",
+      "Merkle receipt verification"
+    ],
+    "automationTools": ["Solidity", "Web3.js", "Moralis", "Hardhat"],
+    "learningGoals": [
+      "Implement secure contract patterns",
+      "Understand gas optimization",
+      "Master soulbound token standards"
+    ],
+    "progressionStage": "practiced",
+    "reviewCadenceDays": [1, 3, 7, 14, 30],
+    "status": "active"
+  },
+  {
+    "id": "role-05",
+    "role": "Security & Compliance Specialist",
+    "coreResponsibilities": [
+      "Implement security measures",
+      "GDPR compliance enforcement",
+      "W3C WebAuthn integration",
+      "IAM biometric logic"
+    ],
+    "automationTools": ["Auth0", "MFA", "data encryption", "HashiCorp Vault"],
+    "learningGoals": [
+      "Apply zero-trust architecture",
+      "Implement privacy-preserving ZK proofs",
+      "Master compliance audit trails"
+    ],
+    "progressionStage": "applied",
+    "reviewCadenceDays": [1, 3, 7, 14, 30],
+    "status": "active"
+  },
+  {
+    "id": "role-06",
+    "role": "Audio/Video Processing Specialist",
+    "coreResponsibilities": [
+      "Audio/video processing",
+      "Format conversions",
+      "Interactive video branching",
+      "H5P integration"
+    ],
+    "automationTools": ["FFmpeg", "MoviePy", "H5P", "WebRTC"],
+    "learningGoals": [
+      "Optimize streaming pipelines",
+      "Implement real-time processing",
+      "Master adaptive bitrate algorithms"
+    ],
+    "progressionStage": "introduced",
+    "reviewCadenceDays": [1, 3, 7, 14, 30],
+    "status": "active"
+  },
+  {
+    "id": "role-07",
+    "role": "Product Manager",
+    "coreResponsibilities": [
+      "Align components with project goals",
+      "Manage cross-functional collaboration",
+      "Agile sprint roadmaps",
+      "Cost analysis and ROI modeling"
+    ],
+    "automationTools": ["Jira", "Confluence", "Slack", "Notion"],
+    "learningGoals": [
+      "Master value-stream mapping",
+      "Apply agile estimation techniques",
+      "Understand competency-based advancement"
+    ],
+    "progressionStage": "retained",
+    "reviewCadenceDays": [7, 14, 30, 60, 90],
+    "status": "active"
+  },
+  {
+    "id": "role-08",
+    "role": "User Community Lead",
+    "coreResponsibilities": [
+      "Foster community engagement",
+      "Gather user feedback",
+      "Manage support channels",
+      "Iterative improvement coordination"
+    ],
+    "automationTools": ["Discord", "Telegram", "Intercom", "Zendesk"],
+    "learningGoals": [
+      "Implement feedback loops",
+      "Analyze user behavior patterns",
+      "Master community growth strategies"
+    ],
+    "progressionStage": "practiced",
+    "reviewCadenceDays": [3, 7, 14, 30, 60],
+    "status": "active"
+  },
+  {
+    "id": "role-09",
+    "role": "Content and Documentation Specialist",
+    "coreResponsibilities": [
+      "Create documentation for users",
+      "Developer API documentation",
+      "Curriculum content creation",
+      "ADR and architecture docs"
+    ],
+    "automationTools": ["Notion", "GitHub", "GitBook", "MkDocs"],
+    "learningGoals": [
+      "Master docs-as-code workflows",
+      "Implement automated doc testing",
+      "Understand information architecture"
+    ],
+    "progressionStage": "retained",
+    "reviewCadenceDays": [7, 14, 30, 60, 90],
+    "status": "active"
+  }
+]

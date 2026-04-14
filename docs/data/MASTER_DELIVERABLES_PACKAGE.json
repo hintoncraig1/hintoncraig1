@@ -1,0 +1,42 @@
+{
+  "master_deliverables": {
+    "documentation": {
+      "adr": "docs/adr/ADR-0001-baseline-freeze.md",
+      "master_reference": "MASTER_2035_REFERENCE.md",
+      "architecture_spec": "ARCHITECTURE_SPEC.md",
+      "execution_synthesis": "docs/planning/MASTER_PROJECT_EXTRACTION_EXECUTION_SYNTHESIS.md"
+    },
+    "infrastructure_as_code": {
+      "aws_cloudformation": "infra/aws/cloudformation/governance-foundation.yaml",
+      "gcp_terraform": "infra/gcp/terraform/main.tf",
+      "azure_arm": "infra/azure/arm/governance-foundation.json",
+      "kubernetes_manifest": "infra/k8s/governance-api.yaml",
+      "universal_orchestrator": "deploy/deploy-all.sh"
+    },
+    "deployment_scripts": {
+      "aws": "scripts/deploy/deploy_aws.sh",
+      "gcp": "scripts/deploy/deploy_gcp.sh",
+      "azure": "scripts/deploy/deploy_azure.sh",
+      "k8s_secret_bootstrap": "scripts/deploy/render_k8s_secret.sh"
+    },
+    "backend_services": {
+      "fastapi_entrypoint": "backend/app/main.py",
+      "governance_router": "backend/app/api/routes/governance.py",
+      "role_ingestion_service": "backend/app/services/role_ingestion_service.py"
+    },
+    "frontend_surfaces": {
+      "expert_roles_table": "src/components/ExpertRolesTable.jsx"
+    },
+    "planning_and_ops": {
+      "next_build_vector": "docs/planning/NEXT_BUILD_VECTOR.md",
+      "infra_translation_guide": "docs/deployment/INFRA_TRANSLATION_GUIDE.md",
+      "deployment_readiness": "docs/DEPLOYMENT_READINESS.md"
+    }
+  },
+  "execution_timeline": {
+    "phase_1": "Governance baseline + infra translation",
+    "phase_2": "API reliability + persistence hardening",
+    "phase_3": "UI integration + operations evidence",
+    "phase_4": "scale hardening + module expansion"
+  }
+}
