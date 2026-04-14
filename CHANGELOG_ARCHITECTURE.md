@@ -27,6 +27,7 @@
 - Added universal deploy orchestrator (`deploy/deploy-all.sh`) to execute secret bootstrap + cloud path + rollout verification from one entrypoint.
 - Added all-inclusive execution synthesis and machine-readable deliverables package artifacts for project-wide extraction and planning.
 - Added online arcade expansion components (slots + strategy duel + hub shell) and supporting frontend/planning docs.
+- Added Personal Intelligence OS minimal loop implementation (capture/hash/store/link/timeline/summary) with ledger + vault API routes and schemas.
 
 ### References
 
@@ -52,3 +53,7 @@
 - `src/components/games/RealmDuel.jsx`
 - `docs/frontend/GAMES_ARCADE_HUB.md`
 - `docs/planning/GAMES_EXPANSION_PLAN.md`
+- `backend/app/api/routes/pios.py`
+- `backend/app/services/pios_service.py`
+- `backend/app/schemas/pios_schema.py`
+- `docs/PIOS_MINIMAL_BUILD.md`

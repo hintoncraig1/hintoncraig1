@@ -1,4 +1,6 @@
-from sqlalchemy import JSON, String
+from datetime import datetime
+
+from sqlalchemy import JSON, DateTime, ForeignKey, Text, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -17,3 +19,26 @@ class ExpertRoleTable(Base):
     progression_stage: Mapped[str] = mapped_column("progression_stage", String(32), nullable=False)
     review_cadence_days: Mapped[list] = mapped_column("review_cadence_days", JSON, nullable=False)
     status: Mapped[str] = mapped_column(String(32), nullable=False)
+
+
+class VaultEntryTable(Base):
+    __tablename__ = "vault_entries"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    entry_type: Mapped[str] = mapped_column(String(16), nullable=False)
+    title: Mapped[str] = mapped_column(String(200), nullable=False)
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+    source_uri: Mapped[str | None] = mapped_column(String(512), nullable=True)
+    content_hash: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
+
+
+class LedgerEventTable(Base):
+    __tablename__ = "ledger_events"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    event_type: Mapped[str] = mapped_column(String(64), nullable=False)
+    entry_id: Mapped[str] = mapped_column(String(64), ForeignKey("vault_entries.id"), nullable=False)
+    event_hash: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    previous_hash: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow, index=True)

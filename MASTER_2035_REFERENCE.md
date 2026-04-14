@@ -66,3 +66,8 @@ Merges to `master` are expected to pass ADR-0001 freeze/approval checks, with de
 - `src/components/games/RealmDuel.jsx`
 - `docs/frontend/GAMES_ARCADE_HUB.md`
 - `docs/planning/GAMES_EXPANSION_PLAN.md`
+
+- `backend/app/api/routes/pios.py`
+- `backend/app/services/pios_service.py`
+- `backend/app/schemas/pios_schema.py`
+- `docs/PIOS_MINIMAL_BUILD.md`
