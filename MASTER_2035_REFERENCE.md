@@ -60,3 +60,9 @@ Merges to `master` are expected to pass ADR-0001 freeze/approval checks, with de
 - `docs/data/MASTER_DELIVERABLES_PACKAGE.json`
 - `docs/visual/VISUAL_REFERENCE_MAP.md`
 - `docs/frontend/SYNAPSE_VISUAL_TOKENS.md`
+
+- `src/components/GamesArcadeHub.jsx`
+- `src/components/games/SlotsEngine.jsx`
+- `src/components/games/RealmDuel.jsx`
+- `docs/frontend/GAMES_ARCADE_HUB.md`
+- `docs/planning/GAMES_EXPANSION_PLAN.md`

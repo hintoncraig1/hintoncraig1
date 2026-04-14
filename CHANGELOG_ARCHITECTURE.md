@@ -26,6 +26,7 @@
 - Added prioritized next-build vector document to define immediate coding sequence across backend, deployment, UI, and ops.
 - Added universal deploy orchestrator (`deploy/deploy-all.sh`) to execute secret bootstrap + cloud path + rollout verification from one entrypoint.
 - Added all-inclusive execution synthesis and machine-readable deliverables package artifacts for project-wide extraction and planning.
+- Added online arcade expansion components (slots + strategy duel + hub shell) and supporting frontend/planning docs.
 
 ### References
 
@@ -46,3 +47,8 @@
 - `deploy/deploy-all.sh`
 - `docs/planning/MASTER_PROJECT_EXTRACTION_EXECUTION_SYNTHESIS.md`
 - `docs/data/MASTER_DELIVERABLES_PACKAGE.json`
+- `src/components/GamesArcadeHub.jsx`
+- `src/components/games/SlotsEngine.jsx`
+- `src/components/games/RealmDuel.jsx`
+- `docs/frontend/GAMES_ARCADE_HUB.md`
+- `docs/planning/GAMES_EXPANSION_PLAN.md`
