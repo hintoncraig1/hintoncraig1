@@ -5,6 +5,7 @@ from datetime import datetime
 from uuid import uuid4
 
 from sqlalchemy import text
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.models.sql_models import LedgerEventTable, VaultEntryTable
@@ -37,42 +38,49 @@ class PersonalIntelligenceService:
 
     def create_entry(self, payload: EntryCreate) -> tuple[EntryRead, LedgerEventRead]:
         content_hash = self._sha256(payload.content)
-        entry_id = f"entry-{uuid4().hex}"
-        now = datetime.utcnow()
 
-        entry = VaultEntryTable(
-            id=entry_id,
-            entry_type=payload.entryType,
-            title=payload.title,
-            content=payload.content,
-            source_uri=payload.sourceUri,
-            content_hash=content_hash,
-            created_at=now,
-        )
-        self.db.add(entry)
+        for _ in range(3):
+            now = datetime.utcnow()
+            entry = VaultEntryTable(
+                id=f"entry-{uuid4().hex}",
+                entry_type=payload.entryType,
+                title=payload.title,
+                content=payload.content,
+                source_uri=payload.sourceUri,
+                content_hash=content_hash,
+                created_at=now,
+            )
 
-        self._acquire_ledger_head_lock()
-        previous_event = (
-            self.db.query(LedgerEventTable)
-            .with_for_update()
-            .order_by(LedgerEventTable.created_at.desc())
-            .first()
-        )
-        previous_hash = previous_event.event_hash if previous_event else None
+            try:
+                self._acquire_ledger_head_lock()
+                previous_event = (
+                    self.db.query(LedgerEventTable)
+                    .with_for_update()
+                    .order_by(LedgerEventTable.created_at.desc())
+                    .first()
+                )
+                previous_hash = previous_event.event_hash if previous_event else None
 
-        receipt_seed = "|".join([entry.id, content_hash, previous_hash or "genesis", now.isoformat()])
-        event = LedgerEventTable(
-            id=f"evt-{uuid4().hex}",
-            event_type="entry.captured",
-            entry_id=entry.id,
-            event_hash=self._sha256(receipt_seed),
-            previous_hash=previous_hash,
-            created_at=now,
-        )
-        self.db.add(event)
-        self.db.commit()
+                receipt_seed = "|".join(
+                    [entry.id, content_hash, previous_hash or "genesis", now.isoformat()]
+                )
+                event = LedgerEventTable(
+                    id=f"evt-{uuid4().hex}",
+                    event_type="entry.captured",
+                    entry_id=entry.id,
+                    event_hash=self._sha256(receipt_seed),
+                    previous_hash=previous_hash,
+                    created_at=now,
+                )
 
-        return self._to_entry_read(entry), self._to_event_read(event)
+                self.db.add(entry)
+                self.db.add(event)
+                self.db.commit()
+                return self._to_entry_read(entry), self._to_event_read(event)
+            except IntegrityError:
+                self.db.rollback()
+
+        raise RuntimeError("Could not append ledger event after multiple retries.")
 
     def _acquire_ledger_head_lock(self) -> None:
         """Serialize append operations so each event links to a unique predecessor."""
