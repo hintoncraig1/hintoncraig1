@@ -27,6 +27,22 @@ def _has_previous_hash_uniqueness(engine: Engine) -> bool:
     return False
 
 
+def _has_duplicate_previous_hashes(engine: Engine) -> bool:
+    query = text(
+        """
+        SELECT 1
+        FROM ledger_events
+        WHERE previous_hash IS NOT NULL
+        GROUP BY previous_hash
+        HAVING COUNT(*) > 1
+        LIMIT 1
+        """
+    )
+
+    with engine.begin() as connection:
+        return connection.execute(query).first() is not None
+
+
 def ensure_ledger_previous_hash_uniqueness(engine: Engine) -> None:
     """Apply a one-time schema fix for existing deployments.
 
@@ -42,17 +58,15 @@ def ensure_ledger_previous_hash_uniqueness(engine: Engine) -> None:
     if _has_previous_hash_uniqueness(engine):
         return
 
-    dialect = engine.dialect.name
-    if dialect == "postgresql":
-        statement = (
-            f"ALTER TABLE {TABLE_NAME} "
-            f"ADD CONSTRAINT {UNIQUE_NAME} UNIQUE ({COLUMN_NAME})"
-        )
-    else:
-        statement = (
-            f"CREATE UNIQUE INDEX {UNIQUE_NAME} "
-            f"ON {TABLE_NAME} ({COLUMN_NAME})"
+    if _has_duplicate_previous_hashes(engine):
+        raise RuntimeError(
+            "Cannot apply previous_hash uniqueness: existing duplicate ledger head links found. "
+            "Please deduplicate ledger_events.previous_hash values before startup."
         )
 
+    statement = (
+        f"CREATE UNIQUE INDEX IF NOT EXISTS {UNIQUE_NAME} "
+        f"ON {TABLE_NAME} ({COLUMN_NAME})"
+    )
     with engine.begin() as connection:
         connection.execute(text(statement))

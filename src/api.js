@@ -6,7 +6,23 @@ const API_BASE =
     ? rawBase.trim().replace(/\/+$/, '')
     : 'http://localhost:8000';
 
-const PIOS_PREFIX = '/api/v1/pios';
+function piosPath(path) {
+  const normalized = path.startsWith('/') ? path.slice(1) : path;
+
+  if (API_BASE.endsWith('/api/v1/pios')) {
+    return `/${normalized}`;
+  }
+
+  if (API_BASE.endsWith('/api/v1')) {
+    return `/pios/${normalized}`;
+  }
+
+  if (API_BASE.endsWith('/api')) {
+    return `/v1/pios/${normalized}`;
+  }
+
+  return `/api/v1/pios/${normalized}`;
+}
 
 function extractErrorMessage(error) {
   if (axios.isCancel?.(error) || error?.code === 'ERR_CANCELED') {
@@ -103,7 +119,7 @@ export async function checkHealth(signal) {
 }
 
 export async function submitProblem(payload, signal) {
-  const response = await api.post(`${PIOS_PREFIX}/entries`, toEntryPayload(payload), {
+  const response = await api.post(piosPath('/entries'), toEntryPayload(payload), {
     signal,
   });
 
@@ -111,7 +127,7 @@ export async function submitProblem(payload, signal) {
 }
 
 export async function fetchTimeline(signal) {
-  const response = await api.get(`${PIOS_PREFIX}/timeline`, { signal });
+  const response = await api.get(piosPath('/timeline'), { signal });
   return response.data;
 }
 
