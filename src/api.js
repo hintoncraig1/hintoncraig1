@@ -6,6 +6,8 @@ const API_BASE =
     ? rawBase.trim().replace(/\/+$/, '')
     : 'http://localhost:8000';
 
+const PIOS_PREFIX = '/api/v1/pios';
+
 function extractErrorMessage(error) {
   if (axios.isCancel?.(error) || error?.code === 'ERR_CANCELED') {
     return 'Request cancelled';
@@ -60,23 +62,56 @@ function ensureObject(value, fallback = {}) {
     : fallback;
 }
 
+function toEntryPayload(payload) {
+  if (typeof payload === 'string') {
+    const text = payload.trim();
+    return {
+      entryType: 'text',
+      title: text.slice(0, 80) || 'Problem statement',
+      content: text,
+      sourceUri: null,
+    };
+  }
+
+  const input = ensureObject(payload);
+  if (typeof input.entryType === 'string' && typeof input.content === 'string') {
+    return {
+      entryType: input.entryType,
+      title:
+        typeof input.title === 'string' && input.title.trim()
+          ? input.title.trim()
+          : input.content.trim().slice(0, 80) || 'Problem statement',
+      content: input.content,
+      sourceUri: input.sourceUri ?? null,
+    };
+  }
+
+  const description =
+    typeof input.description === 'string' ? input.description.trim() : '';
+
+  return {
+    entryType: 'text',
+    title: description.slice(0, 80) || 'Problem statement',
+    content: description,
+    sourceUri: null,
+  };
+}
+
 export async function checkHealth(signal) {
   const response = await api.get('/health', { signal });
   return response.data;
 }
 
 export async function submitProblem(payload, signal) {
-  const body =
-    typeof payload === 'string'
-      ? { description: payload }
-      : ensureObject(payload);
+  const response = await api.post(`${PIOS_PREFIX}/entries`, toEntryPayload(payload), {
+    signal,
+  });
 
-  const response = await api.post('/problem', body, { signal });
   return response.data;
 }
 
 export async function fetchTimeline(signal) {
-  const response = await api.get('/timeline', { signal });
+  const response = await api.get(`${PIOS_PREFIX}/timeline`, { signal });
   return response.data;
 }
 
