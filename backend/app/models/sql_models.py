@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import JSON, DateTime, ForeignKey, Text, String
+from sqlalchemy import JSON, DateTime, ForeignKey, Text, String, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -35,6 +35,9 @@ class VaultEntryTable(Base):
 
 class LedgerEventTable(Base):
     __tablename__ = "ledger_events"
+    __table_args__ = (
+        UniqueConstraint("previous_hash", name="uq_ledger_events_previous_hash"),
+    )
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     event_type: Mapped[str] = mapped_column(String(64), nullable=False)
