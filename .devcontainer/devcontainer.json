@@ -1,0 +1,14 @@
+{
+  "name": "Atrium Unified Stateful Sandbox",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [8081, 8082],
+  "postCreateCommand": "docker compose config",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-azuretools.vscode-docker", "rust-lang.rust-analyzer"]
+    }
+  }
+}
