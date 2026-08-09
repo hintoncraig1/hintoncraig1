@@ -1,0 +1,13 @@
+{
+  "name": "atrium-l4-adapters",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --import tsx --test test-vectors/ed25519.test.ts test-vectors/l4-adapters.test.ts",
+    "verify": "npm test"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "receiptId": "RCPT-L4-ED25519-20260809-01",
+  "operation": "CREATE_TEST_VECTORS_AND_L4_ADAPTERS",
+  "repository": "hintoncraig1/hintoncraig1",
+  "branch": "feat/l4-ed25519-test-vectors",
+  "gate": "5410",
+  "decision": "SCAFFOLD_ONLY_NO_PRIVILEGED_NETWORK_EXECUTION",
+  "artifacts": {
+    "package.json": "949400a774e98ede9fc0c7755f5cf55a2c23f449",
+    "tsconfig.json": "142b70c046d0356d52b2da491a84c0b2c2ba6f3a",
+    "test-vectors/ed25519.vectors.ts": "d45e9cc15dba26f403f948043c32e6f98943491b",
+    "test-vectors/ed25519.test.ts": "0c1fdf0e1056a272b1fdbda685e8f0bfce4d59ef",
+    "test-vectors/l4-adapters.test.ts": "f5edc6f5342c222bd03b46d29057f8783f41a63b",
+    "fractors/network/l4/loopback-adapter.ts": "0eaf54701cb92d83faebf6bb798009c58ffbe781",
+    "fractors/network/l4/wireguard-adapter.ts": "f7e6553a79f4847945821846da9787f16329de0c",
+    "docs/l4-adapters.md": "b073e6fb36e6b9ba4ea0f79bfebf74308a038633"
+  },
+  "artifactSetSha256": "3a48643c14e2cf33ee421d482f07eb69d262520019224a4d25f8458d1917e804",
+  "verification": "NOT_EXECUTED_IN_CHAT_ENVIRONMENT",
+  "replay": "npm install && npm test"
+}
