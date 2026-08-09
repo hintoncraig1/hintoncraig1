@@ -1,0 +1,52 @@
+services:
+  core:
+    build: ./sandbox/core
+    environment:
+      ATRIUM_DATA_DIR: /data
+      RECEIPT_DIR: /data/receipts
+    volumes:
+      - atrium_data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  scheduler:
+    build: ./sandbox/scheduler
+    environment:
+      ATRIUM_DATA_DIR: /data
+      RECEIPT_DIR: /data/receipts
+      POLL_SECONDS: 60
+    volumes:
+      - atrium_data:/data
+    depends_on:
+      core:
+        condition: service_healthy
+
+  webhook:
+    build: ./sandbox/webhook
+    environment:
+      RECEIPT_DIR: /data/receipts
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL:-}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+    volumes:
+      - atrium_data:/data
+    ports:
+      - "8081:8080"
+
+  dashboard:
+    build: ./sandbox/dashboard
+    environment:
+      ATRIUM_DATA_DIR: /data
+    volumes:
+      - atrium_data:/data
+    ports:
+      - "8082:8080"
+    depends_on:
+      - core
+      - webhook
+
+volumes:
+  atrium_data:
