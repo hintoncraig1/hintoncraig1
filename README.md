@@ -83,3 +83,41 @@ For this single-document publish artifact, the Merkle root is identical to the c
 ## Commit Intent
 
 **Do it all in one technical README.md — accessible repos, connected repos.**
+
+
+## ÆTRUM Technical Operations (proposed)
+
+### Purpose
+Cross-repository documentation registry.
+
+### Architecture
+Manifest and canonical ownership registry; no executable application.
+
+### Bootstrap
+```bash
+Read registry/manifest.json
+```
+
+### Verification
+```bash
+Validate registry schema and repository links
+```
+Commands are candidate checks and must be confirmed against the repository scripts before declaring PASS.
+
+### Deployment
+Documentation publishing only.
+
+### Branch and operational metadata
+- Canonical stream: hintoncraig1
+- Stable branch: main (existing default; do not rename automatically)
+- Change branches: feature/*, fix/*, docs/*
+- Release branches: release/* with tagged, reviewed commits
+- Protected releases: CI tests, provenance receipt, signing and rollback plan required
+- Owner approval required for production deployments and device-policy changes
+- Preserve source bytes and history; no automatic normalization of original files
+
+### Multilingual media integration contract
+The central ÆTRUM app may orchestrate ASR, translation, TTS, caption/SDH, audio-description and sign-language-avatar adapters. This repository is **not** asserted to implement these features unless independent tests demonstrate it. Preserve original media and timestamps; translations must be user-reviewed where accuracy matters. Music generation requires licensed models and assets. No automatic long-term conversation memory.
+
+### Verification status
+Documentation proposed; application deployment and integrations unverified.
