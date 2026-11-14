@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-11-14",
+  "registry": "hintoncraig1/hintoncraig1",
+  "status": "proposed-review",
+  "privacy": {
+    "conversation_memory_default": "off",
+    "local_storage": "user-controlled",
+    "telemetry": "opt-in"
+  },
+  "streams": [
+    {
+      "stream": "app",
+      "repository": "hintoncraig1/atrium",
+      "default_branch": "main",
+      "status": "source-audit-required"
+    },
+    {
+      "stream": "evidence",
+      "repository": "hintoncraig1/atrium-desk",
+      "default_branch": "main",
+      "status": "docs-pr-open"
+    },
+    {
+      "stream": "sovereign-web",
+      "repository": "hintoncraig1/E-Mc3_Metatrons",
+      "default_branch": "main",
+      "status": "docs-pr-open"
+    },
+    {
+      "stream": "wallet",
+      "repository": "hintoncraig1/RuBee-Platform",
+      "default_branch": "main",
+      "status": "empty-repo"
+    },
+    {
+      "stream": "android-analysis",
+      "repository": "hintoncraig1/dex2jar",
+      "default_branch": "2.x",
+      "status": "upstream-fork-docs-pr-open"
+    },
+    {
+      "stream": "registry",
+      "repository": "hintoncraig1/hintoncraig1",
+      "default_branch": "main",
+      "status": "docs-pr-open"
+    },
+    {
+      "stream": "experiments",
+      "repository": "hintoncraig1/haikus-for-codespaces",
+      "default_branch": "main",
+      "status": "empty-repo"
+    }
+  ],
+  "platform_targets": [
+    "android",
+    "android-tv",
+    "fire-tv",
+    "web-pwa",
+    "windows-browser",
+    "linux-browser"
+  ],
+  "media_contracts": [
+    "ASR",
+    "translation",
+    "TTS",
+    "SDH-captions",
+    "audio-description",
+    "sign-language-avatar",
+    "licensed-music-generation"
+  ],
+  "release_gates": [
+    "source-inventory",
+    "license-review",
+    "reproducible-build",
+    "unit-tests",
+    "device-tests",
+    "signing",
+    "rollback"
+  ]
+}
